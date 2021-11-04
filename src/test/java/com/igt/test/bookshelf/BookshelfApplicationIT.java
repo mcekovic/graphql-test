@@ -20,7 +20,7 @@ class BookshelfApplicationIT {
 
 	@Test
 	void booksAreSearched() {
-		var query =  /* language=GraphQL */ """
+		var query = /* language=GraphQL */ """
 			query searchBooks($title: String!) {
 			  books: booksByTitle(title: $title) {
 			    bookId

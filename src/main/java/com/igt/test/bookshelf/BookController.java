@@ -14,10 +14,8 @@ import static java.util.stream.StreamSupport.*;
 @SchemaMapping(typeName = "Book")
 class BookController {
 
-	@Autowired
-	BookRepository bookRepository;
-	@Autowired
-	AuthorRepository authorRepository;
+	@Autowired BookRepository bookRepository;
+	@Autowired AuthorRepository authorRepository;
 
 	@QueryMapping
 	Iterable<Book> books() {
@@ -34,7 +32,6 @@ class BookController {
 		return book.shortTitle(length);
 	}
 
-//
 //	@SchemaMapping
 //	Author author(Book book) {
 //		return authorRepository.findById(book.authorId()).orElseThrow();

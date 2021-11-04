@@ -27,7 +27,7 @@ public class AuthorControllerIT {
 		when(authorRepository.findAllByName("Martin Fowler")).thenReturn(List.of(new Author(1L, "Martin Fowler")));
 		when(bookRepository.findAllByAuthorId(1L)).thenReturn(List.of(new Book(1L, "Refactoring", 1L)));
 
-		var query =  /* language=GraphQL */ """
+		var query = /* language=GraphQL */ """
 			query searchAuthors($name: String!) {
 			  authors: authorsByName(name: $name) {
 			    authorId

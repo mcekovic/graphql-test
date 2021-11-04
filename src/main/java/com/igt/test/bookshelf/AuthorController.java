@@ -7,7 +7,6 @@ import org.springframework.data.domain.*;
 import org.springframework.graphql.data.method.annotation.*;
 import org.springframework.stereotype.*;
 
-
 @Controller
 @SchemaMapping(typeName = "Author")
 class AuthorController {
