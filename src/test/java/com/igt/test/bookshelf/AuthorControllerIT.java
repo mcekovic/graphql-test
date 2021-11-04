@@ -27,9 +27,9 @@ public class AuthorControllerIT {
 		when(authorRepository.findAllByName("Martin Fowler")).thenReturn(List.of(new Author(1L, "Martin Fowler")));
 		when(bookRepository.findAllByAuthorId(1L)).thenReturn(List.of(new Book(1L, "Refactoring", 1L)));
 
-		var query = """
-			{
-			  authorsByName(name: "Martin Fowler") {
+		var query =  /* language=GraphQL */ """
+			query searchAuthors($name: String!) {
+			  authors: authorsByName(name: $name) {
 			    authorId
 			    name
 			    books {
@@ -37,8 +37,10 @@ public class AuthorControllerIT {
 			    }
 			  }
 			}""";
-		var response = graphQlTester.query(query).execute();
+		var response = graphQlTester.query(query)
+			.variable("name", "Martin Fowler")
+			.execute();
 
-		response.path("data.authorsByName[0].books[0].title").entity(String.class).isEqualTo("Refactoring");
+		response.path("data.authors[0].books[0].title").entity(String.class).isEqualTo("Refactoring");
 	}
 }
